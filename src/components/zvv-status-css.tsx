@@ -1,4 +1,4 @@
-import "../styles/zvv-styles.css"
+import "../../styles/zvv-styles.css"
 
 type StatusType = "operational" | "degraded" | "partial_outage" | "major_outage" | "maintenance"
 
