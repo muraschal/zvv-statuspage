@@ -1,0 +1,206 @@
+:root {
+  --zvv-font-family: "Helvetica Neue", Arial, sans-serif;
+  --zvv-blue: #003399;
+
+  /* Status colors */
+  --zvv-status-green: #2bd62e;
+  --zvv-status-yellow: #ffcc33;
+  --zvv-status-orange: #ff9900;
+  --zvv-status-red: #ff3333;
+  --zvv-status-blue: #3399ff;
+
+  /* Background colors */
+  --zvv-bg-green: #e6f7e6;
+  --zvv-bg-yellow: #fff9e6;
+  --zvv-bg-orange: #fff4e6;
+  --zvv-bg-red: #ffebeb;
+  --zvv-bg-blue: #e6f0ff;
+
+  /* Border colors */
+  --zvv-border-green: #c3e6c3;
+  --zvv-border-yellow: #ffe7b3;
+  --zvv-border-orange: #ffe0b3;
+  --zvv-border-red: #ffcccc;
+  --zvv-border-blue: #cce0ff;
+
+  /* Text colors */
+  --zvv-text-primary: #333333;
+  --zvv-text-secondary: #444444;
+  --zvv-text-tertiary: #666666;
+
+  /* Spacing */
+  --zvv-spacing-sm: 8px;
+  --zvv-spacing-md: 12px;
+  --zvv-spacing-lg: 20px;
+  --zvv-spacing-xl: 24px;
+  --zvv-spacing-xxl: 32px;
+}
+
+body {
+  font-family: var(--zvv-font-family);
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+.zvv-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--zvv-spacing-xl) var(--zvv-spacing-lg);
+}
+
+.zvv-heading {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--zvv-blue);
+  margin-bottom: var(--zvv-spacing-xxl); /* Increased for better spacing */
+}
+
+/* Update the status notification styles to include a background icon */
+.zvv-status-notification {
+  border-radius: 0;
+  padding: var(--zvv-spacing-lg); /* Consistent padding */
+  margin-bottom: var(--zvv-spacing-xl); /* Consistent spacing between notifications */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add styles for the background icon */
+.zvv-status-notification::after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  right: -25px;
+  width: 120px; /* Increased size */
+  height: 120px; /* Increased size */
+  border-radius: 50%;
+  opacity: 0.2; /* Slightly increased opacity */
+  z-index: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 65px; /* Increased size */
+}
+
+.zvv-status-notification--operational {
+  background-color: var(--zvv-bg-green);
+  border: 1px solid var(--zvv-border-green);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px var(--zvv-border-green);
+}
+
+.zvv-status-notification--operational::after {
+  background-color: var(--zvv-status-green);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+.zvv-status-notification--degraded {
+  background-color: var(--zvv-bg-yellow);
+  border: 1px solid var(--zvv-border-yellow);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px var(--zvv-border-yellow);
+}
+
+.zvv-status-notification--degraded::after {
+  background-color: var(--zvv-status-yellow);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'%3E%3C/path%3E%3Cpath d='M12 9v4'%3E%3C/path%3E%3Cpath d='M12 17h.01'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* For the partial_outage (orange) status */
+.zvv-status-notification--partial {
+  background-color: var(--zvv-bg-orange);
+  border: 1px solid var(--zvv-border-orange);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px var(--zvv-border-orange);
+}
+
+.zvv-status-notification--partial::after {
+  background-color: var(--zvv-status-orange);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'%3E%3C/path%3E%3Cpath d='M12 9v4'%3E%3C/path%3E%3Cpath d='M12 17h.01'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* For the major_outage (red) status */
+.zvv-status-notification--major {
+  background-color: var(--zvv-bg-red);
+  border: 1px solid var(--zvv-border-red);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px var(--zvv-border-red);
+}
+
+.zvv-status-notification--major::after {
+  background-color: var(--zvv-status-red);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'%3E%3C/path%3E%3Cpath d='m6 6 12 12'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.zvv-status-notification--maintenance {
+  background-color: var(--zvv-bg-blue);
+  border: 1px solid var(--zvv-border-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px var(--zvv-border-blue);
+}
+
+.zvv-status-notification--maintenance::after {
+  background-color: var(--zvv-status-blue);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Update the content styles to remove the left icon and adjust spacing */
+.zvv-status-content {
+  position: relative;
+  z-index: 1;
+}
+
+.zvv-status-title {
+  font-size: 18px; /* Increased from 16px for better hierarchy */
+  font-weight: 600;
+  color: var(--zvv-text-primary);
+  margin: 0 0 var(--zvv-spacing-md) 0; /* Consistent spacing */
+  line-height: 1.3;
+}
+
+.zvv-status-message {
+  font-size: 14px;
+  color: var(--zvv-text-secondary);
+  margin: 0 0 var(--zvv-spacing-md) 0; /* Consistent spacing */
+  line-height: 1.5;
+}
+
+.zvv-status-message a {
+  color: var(--zvv-blue);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.zvv-status-message a:hover {
+  text-decoration: underline;
+}
+
+/* Add focus states for links */
+.zvv-status-message a:focus {
+  outline: 2px solid var(--zvv-blue);
+  text-decoration: underline;
+}
+
+.zvv-status-timestamp {
+  font-size: 13px;
+  color: var(--zvv-text-tertiary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .zvv-container {
+    padding: var(--zvv-spacing-lg) var(--zvv-spacing-sm);
+  }
+
+  .zvv-status-notification {
+    padding: var(--zvv-spacing-md); /* Reduced padding on mobile */
+  }
+
+  .zvv-status-title {
+    font-size: 16px;
+  }
+
+  .zvv-status-message {
+    font-size: 13px;
+  }
+
+  .zvv-status-timestamp {
+    font-size: 12px;
+  }
+}
